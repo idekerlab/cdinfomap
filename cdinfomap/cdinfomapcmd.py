@@ -172,8 +172,57 @@ def run_infomap(graph, outdir, markovtime=0.75,
                 edges.add((int(A[i, j]), int(A[i, j + 1]), 'c-c'))
         edges.add((last, int(A[i, A.shape[1] - 1]), 'c-m'))
 
+    # trim the hierarchy to remove contigs
+    up_tree = {}
+    down_tree = {}
     for edge in edges:
-        sys.stdout.write(str(edge[0]) + ',' + str(edge[1]) + ',' + str(edge[2]) + ';')
+        down_tree.setdefault(str(edge[0]), [])
+        down_tree[str(edge[0])].append(str(edge[1]))
+        up_tree.setdefault(str(edge[1]), [])
+        up_tree[str(edge[1])].append(str(edge[0]))
+
+    # store root and leaves
+    set1 = set(down_tree.keys())
+    set2 = set(up_tree.keys())
+    root_l = list(set1.difference(set2))
+    leaf_l = list(set2.difference(set1))
+    node_l = list(set1.union(set2))
+
+    # find all contigs in the DAG
+    Contigs = []
+    work_list = root_l
+    visited = {}
+    for node in node_l:
+        visited[node] = 0
+    work_path = []
+    new_path = False
+    while work_list:
+        key = work_list.pop(0)
+        if new_path == False:
+            work_path.append(key)
+        else:
+            work_path.append(up_tree[key][visited[key]])
+            work_path.append(key)
+        if key in leaf_l:
+            new_path = True
+            Contigs.append(work_path)
+            work_path = []
+        elif len(down_tree[key]) > 1 or visited[key] > 0:
+            new_path = True
+            Contigs.append(work_path)
+            work_path = []
+        if visited[key] == 0 and key not in leaf_l:
+            work_list = down_tree[key] + work_list
+        visited[key] += 1
+
+    # write trimmed DAG
+    for path in Contigs[1:]:
+        sys.stdout.write(path[0] + ',' + path[-1] + ',')
+        if path[-1] in leaf_l:
+            sys.stdout.write('c-m' + ';')
+        else:
+            sys.stdout.write('c-c' + ';')
+    
     sys.stdout.flush()
 
     return 0
