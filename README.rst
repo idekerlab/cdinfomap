@@ -48,7 +48,7 @@ Building
 .. code-block::
 
    git clone https://github.com/idekerlab/cdinfomap
-   cd cdclixo
+   cd cdinfomap
    make dockerbuild
 
 Run **make** command with no arguments to see other build/deploy options including creation of Docker image
