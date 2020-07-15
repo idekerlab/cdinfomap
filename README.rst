@@ -36,7 +36,7 @@ Dependencies
 Direct invocation
 ------------------
 
-Version `0.1.0` can be directly pulled from dockerhub with this command:
+Version `0.1.0` can be directly pulled from `Dockerhub <https://hub.docker.com/>`_ with this command:
 
 .. code-block::
 
