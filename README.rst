@@ -16,7 +16,7 @@ Community Detection Infomap
         :target: https://requires.io/github/idekerlab/cdinfomap/requirements?branch=master
         :alt: Dependencies
 
-This repository creates a CDAPS compatible community detection Docker image using CliXO
+This repository creates a CDAPS compatible community detection Docker image using Infomap
 packaged from https://www.mapequation.org/code.html
 
 * A method based on Flux. Detect communities from dynamics on the network.
