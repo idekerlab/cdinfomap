@@ -2,20 +2,6 @@
 Community Detection Infomap
 ===================================================
 
-.. image:: https://img.shields.io/pypi/v/cdinfomap.svg
-        :target: https://pypi.python.org/pypi/cdinfomap
-
-.. image:: https://img.shields.io/travis/idekerlab/cdinfomap.svg
-        :target: https://travis-ci.org/idekerlab/cdinfomap
-
-.. image:: https://readthedocs.org/projects/cdinfomap/badge/?version=latest
-        :target: https://cdinfomap.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-.. image:: https://requires.io/github/idekerlab/cdinfomap/requirements.svg?branch=master
-        :target: https://requires.io/github/idekerlab/cdinfomap/requirements?branch=master
-        :alt: Dependencies
-
 This repository creates a CDAPS compatible community detection Docker image using Infomap
 packaged from https://www.mapequation.org/code.html
 
